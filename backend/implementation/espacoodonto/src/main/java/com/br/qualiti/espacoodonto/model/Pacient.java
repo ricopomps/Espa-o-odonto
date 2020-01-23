@@ -44,11 +44,11 @@ public class Pacient {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getgender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setgender(String gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
