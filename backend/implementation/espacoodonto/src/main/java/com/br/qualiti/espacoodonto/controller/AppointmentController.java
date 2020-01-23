@@ -15,44 +15,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.qualiti.espacoodonto.exception.ResourceNotFoundException;
-import com.br.qualiti.espacoodonto.model.Pacient;
-import com.br.qualiti.espacoodonto.service.PacientService;
+import com.br.qualiti.espacoodonto.model.Appointment;
+import com.br.qualiti.espacoodonto.service.AppointmentService;
 
 @RestController()
-@RequestMapping("/api/v1/pacient")
-public class PacientController {
-	private PacientService pacientService;
+@RequestMapping("/api/v1/appointment")
+public class AppointmentController {
+	private AppointmentService appointmentService;
 
-	PacientController(PacientService pacientService) {
-		this.pacientService = pacientService;
+	AppointmentController(AppointmentService appointmentService) {
+		this.appointmentService = appointmentService;
 	}
 
 	@PostMapping
-	public Pacient create(@RequestBody Pacient pacient) {
-		return pacientService.create(pacient);
+	public Appointment create(@RequestBody Appointment appointment) {
+		return appointmentService.create(appointment);
 	}
 
 	@GetMapping
 	public List findAll() {
-		return pacientService.findAll();
+		return appointmentService.findAll();
 	}
 
 	@GetMapping(path = { "/{id}" })
 	public ResponseEntity findById(@PathVariable long id) {
-		Optional<Pacient> pacient = pacientService.findById(id);
-		if (pacient.isPresent()) {
-			return ResponseEntity.ok().body(pacient);
-			
+		Optional<Appointment> appointment = appointmentService.findById(id);
+		if (appointment.isPresent()) {
+			return ResponseEntity.ok().body(appointment);
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity update(@PathVariable("id") long id, @RequestBody Pacient pacient) {
+	public ResponseEntity update(@PathVariable("id") long id, @RequestBody Appointment appointment) {
 		try {
-			Pacient updatedPacient = pacientService.update(id, pacient);
-			return ResponseEntity.ok().body(updatedPacient);
+			Appointment updatedappointment = appointmentService.update(id, appointment);
+			return ResponseEntity.ok().body(updatedappointment);
 		} catch (ResourceNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -60,7 +59,7 @@ public class PacientController {
 
 	@DeleteMapping(path = { "/{id}" })
 	public ResponseEntity delete(@PathVariable long id) {
-		pacientService.delete(id);
+		appointmentService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

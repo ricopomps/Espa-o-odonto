@@ -2,9 +2,9 @@ package com.br.qualiti.espacoodonto.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.br.qualiti.espacoodonto.model.Pacient;
+import com.br.qualiti.espacoodonto.model.Appointment;
 
 @Repository
-public interface PacientRepository extends JpaRepository<Pacient, Long> {
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
 }

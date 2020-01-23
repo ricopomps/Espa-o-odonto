@@ -20,6 +20,7 @@ public class PacientService {
 
 	public Pacient create(Pacient pacient) {
 		return pacientRepository.save(pacient);
+
 	}
 
 	public List findAll() {
@@ -43,11 +44,12 @@ public class PacientService {
 					"O paciente com id: " + id + " não foi encontrado");
 		}
 	}
+
 	public void delete(long id) {
 		try {
 			pacientRepository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
-			
+
 		}
 	}
 }
