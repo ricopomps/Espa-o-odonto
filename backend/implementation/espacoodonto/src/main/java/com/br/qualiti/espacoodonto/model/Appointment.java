@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -23,9 +23,9 @@ public class Appointment {
 	private double value;
 
 	@JsonBackReference
-	//@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pacient_id", nullable = false)
-	private long pacientId;
+	private Pacient pacient;
 
 	public Appointment() {
 
@@ -55,12 +55,12 @@ public class Appointment {
 		this.value = value;
 	}
 
-	public long getPacientId() {
-		return pacientId;
+	public Pacient getPacient() {
+		return pacient;
 	}
 
-	public void setPacientId(long pacientId) {
-		this.pacientId = pacientId;
+	public void setPacient(Pacient pacient) {
+		this.pacient = pacient;
 	}
 
 }

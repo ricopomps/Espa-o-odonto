@@ -1,11 +1,16 @@
 package com.br.qualiti.espacoodonto.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 @Entity
 public class Pacient {
 	@Id
@@ -15,6 +20,8 @@ public class Pacient {
 	private Date dateOfBirth;
 	private String gender;
 	private String cell;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pacient")
+	private List<Appointment> appointments;
 
 	public Pacient() {
 
@@ -50,6 +57,14 @@ public class Pacient {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	public String getCell() {

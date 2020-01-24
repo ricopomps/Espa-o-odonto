@@ -29,11 +29,11 @@ public class AppointmentService {
 	public Optional<Appointment> findById(long id) {
 		return appointmentRepository.findById(id);
 	}
-
+	
 	public Appointment update(long id, Appointment appointment) {
 		Optional<Appointment> currentAppointment = appointmentRepository.findById(id);
 		if (currentAppointment.isPresent()) {
-			currentAppointment.get().setPacientId(appointment.getPacientId());
+			currentAppointment.get().setPacient(appointment.getPacient());
 			currentAppointment.get().setTime(appointment.getTime());
 			currentAppointment.get().setValue(appointment.getValue());
 			return appointmentRepository.save(currentAppointment.get());
